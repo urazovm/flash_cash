@@ -1,8 +1,8 @@
-class Api::V1::Braintree::Transaction::SalesController < ApplicationController
+class Api::V1::Braintree::Transaction::ReleasesFromEscrowController < ApplicationController
   respond_to :json
 
   def create
-    result = Braintree::Transaction.sale(sale_params)
+    result = Braintree::Transaction.release_from_escrow(params.permit(:transaction_id)[:transaction_id])
 
     if result.success?
       transaction = result.transaction
@@ -13,13 +13,6 @@ class Api::V1::Braintree::Transaction::SalesController < ApplicationController
   end
 
   private
-
-  def sale_params
-    params.permit(
-      :amount, :payment_method_token, :service_fee_amount, :customer_id, :merchant_account_id,
-      options: [:submit_for_settlement, :hold_in_escrow]
-    )
-  end
 
   def transaction_attributes(braintree_transaction)
     {

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         namespace :transaction do
           resources :sales, only: [:create]
           resources :submit_for_settlements, only: [:create]
-          resources :release_from_escrows, only: [:create]
+          resources :releases_from_escrow, only: [:create]
           resources :void_transactions, only: [:create]
         end
       end
