@@ -10,7 +10,7 @@ Rails.application.routes.draw do
           resources :sales, only: [:create]
           resources :submit_for_settlements, only: [:create]
           resources :releases_from_escrow, only: [:create]
-          resources :void_transactions, only: [:create]
+          resources :voids, only: [:create]
         end
       end
     end
